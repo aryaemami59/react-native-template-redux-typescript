@@ -1,17 +1,27 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { AsyncButton } from '../../components/AsyncButton';
 import {
   decrement,
   increment,
+  incrementAsync,
   incrementByAmount,
+  incrementIfOdd,
   selectCount,
 } from './counterSlice';
 
-export function Counter() {
-  const count = useAppSelector(selectCount);
-  const dispatch = useAppDispatch();
+export const Counter = () => {
   const [incrementAmount, setIncrementAmount] = useState('2');
+  const count = useAppSelector(selectCount);
+  const status = useAppSelector(state => state.counter.status);
+  const dispatch = useAppDispatch();
 
   const incrementValue = Number(incrementAmount) || 0;
 
@@ -31,19 +41,38 @@ export function Counter() {
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
+        <TextInput
+          style={styles.textbox}
+          value={incrementAmount}
+          keyboardType="numeric"
+          onChangeText={setIncrementAmount}
+        />
         <View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() =>
-              dispatch(incrementByAmount(Number(incrementByAmount) || 0))
-            }>
+            onPress={() => dispatch(incrementByAmount(incrementValue))}>
             <Text style={styles.buttonText}>Add Amount</Text>
+          </TouchableOpacity>
+          <AsyncButton
+            style={styles.button}
+            disabled={status !== 'idle'}
+            onPress={() => {
+              dispatch(incrementAsync(incrementValue)).catch(console.log);
+            }}>
+            <Text style={styles.buttonText}>Add Async</Text>
+          </AsyncButton>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              dispatch(incrementIfOdd(incrementValue));
+            }}>
+            <Text style={styles.buttonText}>Add If Odd</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   row: {

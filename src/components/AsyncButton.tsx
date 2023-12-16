@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import { useRef } from 'react';
 import type {
   GestureResponderEvent,
@@ -7,12 +7,12 @@ import type {
 } from 'react-native';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 
-export function AsyncButton({
+export const AsyncButton: FC<PressableProps & PropsWithChildren> = ({
   onPress,
   style,
   children,
   ...restProps
-}: PressableProps & PropsWithChildren) {
+}) => {
   const progress = useRef(new Animated.Value(0)).current;
   const opacity = useRef(new Animated.Value(1)).current;
 
@@ -59,7 +59,7 @@ export function AsyncButton({
       {children}
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   progress: {

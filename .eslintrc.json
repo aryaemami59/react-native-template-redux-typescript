@@ -22,5 +22,11 @@
         "fixStyle": "separate-type-imports"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["./__tests__/**/*.ts", "./__tests__/**/*.tsx"],
+      "env": { "jest": true }
+    }
+  ]
 }
