@@ -1,4 +1,4 @@
-package com.rr
+package com.reduxTemplate
 
 import android.app.Application
 import com.facebook.react.PackageList
