@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useState } from 'react';
 import {
   StyleSheet,
@@ -17,7 +18,7 @@ import {
   selectCount,
 } from './counterSlice';
 
-export const Counter = () => {
+export const Counter: FC = () => {
   const [incrementAmount, setIncrementAmount] = useState('2');
   const count = useAppSelector(selectCount);
   const status = useAppSelector(state => state.counter.status);

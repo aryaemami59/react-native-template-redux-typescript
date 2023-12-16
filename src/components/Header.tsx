@@ -13,7 +13,7 @@ export const Header = () => {
     <View
       style={[
         styles.container,
-        { backgroundColor: isDarkMode ? TypedColors.white : TypedColors.black },
+        { backgroundColor: isDarkMode ? TypedColors.black : TypedColors.white },
       ]}>
       <Animated.Image
         accessibilityRole={'image'}

@@ -1,10 +1,22 @@
+import type { FC } from 'react';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// @ts-expect-error
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  useColorScheme,
+} from 'react-native';
 import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrowser';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { TypedColors } from '../constants/TypedColors';
 
-const links = [
+interface Link {
+  title: string;
+  link: string;
+  description: string;
+}
+
+const links: Link[] = [
   {
     title: 'React',
     link: 'https://reactjs.org/',
@@ -28,24 +40,45 @@ const links = [
   },
 ];
 
-const LinkList = () => (
-  <View style={styles.container}>
-    {links.map((item, index) => {
-      return (
-        <React.Fragment key={index}>
-          <View style={styles.separator} />
-          <TouchableOpacity
-            accessibilityRole={'button'}
-            onPress={() => openURLInBrowser(item.link)}
-            style={styles.linkContainer}>
-            <Text style={styles.link}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-          </TouchableOpacity>
-        </React.Fragment>
-      );
-    })}
-  </View>
-);
+export const LearnReduxLinks: FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  return (
+    <View style={styles.container}>
+      {links.map((item, index) => {
+        return (
+          <React.Fragment key={index}>
+            <View
+              style={[
+                styles.separator,
+                {
+                  backgroundColor: isDarkMode
+                    ? TypedColors.dark
+                    : TypedColors.light,
+                },
+              ]}
+            />
+            <TouchableOpacity
+              accessibilityRole={'button'}
+              onPress={() => {
+                openURLInBrowser(item.link);
+              }}
+              style={styles.linkContainer}>
+              <Text style={styles.link}>{item.title}</Text>
+              <Text
+                style={[
+                  styles.description,
+                  { color: isDarkMode ? TypedColors.light : TypedColors.dark },
+                ]}>
+                {item.description}
+              </Text>
+            </TouchableOpacity>
+          </React.Fragment>
+        );
+      })}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -63,19 +96,15 @@ const styles = StyleSheet.create({
     flex: 2,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.primary,
+    color: TypedColors.primary,
   },
   description: {
     flex: 3,
     paddingVertical: 16,
     fontWeight: '400',
     fontSize: 18,
-    color: Colors.dark,
   },
   separator: {
-    backgroundColor: Colors.light,
     height: 1,
   },
 });
-
-export default LinkList;

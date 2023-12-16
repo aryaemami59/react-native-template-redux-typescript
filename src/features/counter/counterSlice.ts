@@ -86,5 +86,3 @@ export const incrementIfOdd =
       dispatch(incrementByAmount(amount));
     }
   };
-
-export const { reducer: counterReducer } = counterSlice;

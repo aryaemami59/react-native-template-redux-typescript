@@ -7,7 +7,9 @@ import type {
 } from 'react-native';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 
-export const AsyncButton: FC<PressableProps & PropsWithChildren> = ({
+type AsyncButtonProps = PressableProps & PropsWithChildren;
+
+export const AsyncButton: FC<AsyncButtonProps> = ({
   onPress,
   style,
   children,

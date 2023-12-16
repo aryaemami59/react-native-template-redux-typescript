@@ -1,35 +1,37 @@
 import type { CounterState } from '../src/features/counter/counterSlice';
 import {
-  counterReducer,
+  counterSlice,
   decrement,
   increment,
   incrementByAmount,
 } from '../src/features/counter/counterSlice';
 
 describe('counter reducer', () => {
+  const { reducer: counterReducer } = counterSlice;
   const initialState: CounterState = {
     value: 3,
     status: 'idle',
   };
-  it('should handle initial state', () => {
-    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
+
+  test('should handle initial state', () => {
+    expect(counterReducer(undefined, { type: 'unknown' })).toStrictEqual({
       value: 0,
       status: 'idle',
     });
   });
 
-  it('should handle increment', () => {
+  test('should handle increment', () => {
     const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
+    expect(actual.value).toBe(4);
   });
 
-  it('should handle decrement', () => {
+  test('should handle decrement', () => {
     const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
+    expect(actual.value).toBe(2);
   });
 
-  it('should handle incrementByAmount', () => {
+  test('should handle incrementByAmount', () => {
     const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
+    expect(actual.value).toBe(5);
   });
 });
