@@ -24,7 +24,6 @@ export const AsyncButton: FC<AsyncButtonProps> = ({
 
     onPress?.(e);
 
-    // TODO: Maybe change to Animated.sequence
     Animated.timing(progress, {
       toValue: 1,
       duration: 1000,
