@@ -1,14 +1,15 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createAppAsyncThunk } from '../../app/createAppAsyncThunk';
 import type { AppThunk } from '../../app/store';
 import { fetchCount } from './counterAPI';
 
-export interface CounterState {
+export interface CounterSliceState {
   value: number;
   status: 'idle' | 'loading' | 'failed';
 }
 
-const initialState: CounterState = {
+const initialState: CounterSliceState = {
   value: 0,
   status: 'idle',
 };
@@ -18,7 +19,7 @@ const initialState: CounterState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const incrementAsync = createAsyncThunk(
+export const incrementAsync = createAppAsyncThunk(
   'counter/fetchCount',
   async (amount: number) => {
     const response = await fetchCount(amount);
@@ -75,6 +76,7 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
+// Selectors returned by `slice.selectors` take the root state as their first argument.
 export const { selectCount, selectStatus } = counterSlice.selectors;
 
 // We can also write thunks by hand, which may contain both sync and async logic.

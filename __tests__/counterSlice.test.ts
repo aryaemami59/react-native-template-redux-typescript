@@ -1,4 +1,4 @@
-import type { CounterState } from '../src/features/counter/counterSlice';
+import type { CounterSliceState } from '../src/features/counter/counterSlice';
 import {
   counterSlice,
   decrement,
@@ -8,7 +8,7 @@ import {
 
 describe('counter reducer', () => {
   const { reducer: counterReducer } = counterSlice;
-  const initialState: CounterState = {
+  const initialState: CounterSliceState = {
     value: 3,
     status: 'idle',
   };
