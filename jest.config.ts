@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'react-native',
   testEnvironment: 'node',
-  setupFilesAfterEnv: ['./jest-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   fakeTimers: { enableGlobally: true },
 };
 
