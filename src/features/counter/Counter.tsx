@@ -16,15 +16,14 @@ import {
   incrementByAmount,
   incrementIfOdd,
   selectCount,
+  selectStatus,
 } from './counterSlice';
 
 export const Counter: FC = () => {
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const [incrementAmount, setIncrementAmount] = useState(2);
   const count = useAppSelector(selectCount);
-  const status = useAppSelector(state => state.counter.status);
+  const status = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
-
-  const incrementValue = Number(incrementAmount) || 0;
 
   return (
     <View>
@@ -44,28 +43,30 @@ export const Counter: FC = () => {
       <View style={styles.row}>
         <TextInput
           style={styles.textbox}
-          value={incrementAmount}
+          value={`${incrementAmount}`}
           keyboardType="numeric"
-          onChangeText={setIncrementAmount}
+          onChangeText={text => {
+            setIncrementAmount(Number(text));
+          }}
         />
         <View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => dispatch(incrementByAmount(incrementValue))}>
+            onPress={() => dispatch(incrementByAmount(incrementAmount))}>
             <Text style={styles.buttonText}>Add Amount</Text>
           </TouchableOpacity>
           <AsyncButton
             style={styles.button}
             disabled={status !== 'idle'}
             onPress={() => {
-              dispatch(incrementAsync(incrementValue)).catch(console.log);
+              dispatch(incrementAsync(incrementAmount)).catch(console.log);
             }}>
             <Text style={styles.buttonText}>Add Async</Text>
           </AsyncButton>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              dispatch(incrementIfOdd(incrementValue));
+              dispatch(incrementIfOdd(incrementAmount));
             }}>
             <Text style={styles.buttonText}>Add If Odd</Text>
           </TouchableOpacity>
