@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import { useState } from 'react';
 import {
   StyleSheet,
@@ -19,7 +18,7 @@ import {
   selectStatus,
 } from './counterSlice';
 
-export const Counter: FC = () => {
+export const Counter = () => {
   const [incrementAmount, setIncrementAmount] = useState(2);
   const count = useAppSelector(selectCount);
   const status = useAppSelector(selectStatus);
