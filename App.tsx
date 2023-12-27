@@ -8,8 +8,6 @@ import {
   View,
   useColorScheme,
 } from 'react-native'
-import { Provider } from 'react-redux'
-import { store } from './src/app/store'
 import { Counter } from './src/features/counter/Counter'
 
 import {
@@ -32,47 +30,43 @@ export const App: FC = () => {
   }
 
   return (
-    <Provider store={store}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          <Header />
-          <HermesBadge />
-          <View
-            style={{
-              backgroundColor: isDarkMode
-                ? TypedColors.black
-                : TypedColors.white,
-            }}>
-            <Counter />
-            <Quotes />
-            <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-              screen and then come back to see your edits.
-            </Section>
-            <Section title="See Your Changes">
-              <ReloadInstructions />
-            </Section>
-            <Section title="Debug">
-              <DebugInstructions />
-            </Section>
-            <Section title="Learn More Redux">
-              Discover what to do next with Redux:
-            </Section>
-            <LearnReduxLinks />
-            <Section title="Learn More React Native">
-              Read the docs to discover what to do next:
-            </Section>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Provider>
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <HermesBadge />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? TypedColors.black : TypedColors.white,
+          }}>
+          <Counter />
+          <Quotes />
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More Redux">
+            Discover what to do next with Redux:
+          </Section>
+          <LearnReduxLinks />
+          <Section title="Learn More React Native">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
