@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type { FC } from "react"
 import {
   SafeAreaView,
   ScrollView,
@@ -7,23 +7,23 @@ import {
   Text,
   View,
   useColorScheme,
-} from 'react-native'
-import { Counter } from './src/features/counter/Counter'
+} from "react-native"
+import { Counter } from "./src/features/counter/Counter"
 
 import {
   DebugInstructions,
   HermesBadge,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
-import { Header } from './src/components/Header'
-import { LearnReduxLinks } from './src/components/LearnReduxLinks'
-import { Section } from './src/components/Section'
-import { TypedColors } from './src/constants/TypedColors'
-import { Quotes } from './src/features/quotes/Quotes'
+} from "react-native/Libraries/NewAppScreen"
+import { Header } from "./src/components/Header"
+import { LearnReduxLinks } from "./src/components/LearnReduxLinks"
+import { Section } from "./src/components/Section"
+import { TypedColors } from "./src/constants/TypedColors"
+import { Quotes } from "./src/features/quotes/Quotes"
 
 export const App: FC = () => {
-  const isDarkMode = useColorScheme() === 'dark'
+  const isDarkMode = useColorScheme() === "dark"
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? TypedColors.darker : TypedColors.lighter,
@@ -32,18 +32,20 @@ export const App: FC = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={isDarkMode ? "light-content" : "dark-content"}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={backgroundStyle}
+      >
         <Header />
         <HermesBadge />
         <View
           style={{
             backgroundColor: isDarkMode ? TypedColors.black : TypedColors.white,
-          }}>
+          }}
+        >
           <Counter />
           <Quotes />
           <Section title="Step One">
@@ -72,6 +74,6 @@ export const App: FC = () => {
 
 const styles = StyleSheet.create({
   highlight: {
-    fontWeight: '700',
+    fontWeight: "700",
   },
 })
