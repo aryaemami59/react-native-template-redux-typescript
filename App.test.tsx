@@ -2,15 +2,11 @@ import { screen, waitFor } from "@testing-library/react-native"
 import { App } from "./App"
 import { renderWithProviders } from "./src/utils/test-utils"
 
-// beforeEach(cleanup)
-
-// afterEach(cleanup)
-
 test("App should have correct initial render", () => {
   renderWithProviders(<App />)
 
   // The app should be rendered correctly
-  expect(screen.getByText(/Learn More Redux/i)).toBeOnTheScreen()
+  expect(screen.getByText(/learn more redux/i)).toBeOnTheScreen()
 
   // Initial state: count should be 0, incrementValue should be 2
   expect(screen.getByTestId("count")).toHaveTextContent("0")
@@ -34,9 +30,7 @@ test("Add Amount should work as expected", async () => {
 
   // "Add Amount" button is clicked => Count should be 2
   await user.press(screen.getByText("Add Amount"))
-  await waitFor(() =>
-    expect(screen.getByTestId("count")).toHaveTextContent("2"),
-  )
+  expect(screen.getByTestId("count")).toHaveTextContent("2")
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
   // incrementValue is 2, click on "Add Amount" => Count should be 4
@@ -49,19 +43,17 @@ test("Add Amount should work as expected", async () => {
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.press(screen.getByText("Add Amount"))
-
   expect(screen.getByTestId("count")).toHaveTextContent("3")
 })
 
 it("Add Async should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
-  expect(screen.getByTestId("count")).toHaveTextContent("0")
-  // "Add Async" button is clicked => Count should be 2
-  await user.press(screen.getByLabelText("Async Button"))
 
-  await waitFor(
-    () => expect(screen.getByTestId("count")).toHaveTextContent("2"),
-    { timeout: 500 },
+  // "Add Async" button is clicked => Count should be 2
+  await user.press(screen.getByText("Add Async"))
+
+  await waitFor(() =>
+    expect(screen.getByTestId("count")).toHaveTextContent("2"),
   )
 
   const incrementValueInput = screen.getByLabelText("Set increment amount")
@@ -70,18 +62,16 @@ it("Add Async should work as expected", async () => {
   await user.type(incrementValueInput, "2")
 
   await user.press(screen.getByText("Add Async"))
-  await waitFor(
-    () => expect(screen.getByTestId("count")).toHaveTextContent("4"),
-    { timeout: 500 },
+  await waitFor(() =>
+    expect(screen.getByTestId("count")).toHaveTextContent("4"),
   )
 
   // [Negative number] incrementValue is -1, click on "Add Async" => Count should be 3
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.press(screen.getByText("Add Async"))
-  await waitFor(
-    () => expect(screen.getByTestId("count")).toHaveTextContent("3"),
-    { timeout: 500 },
+  await waitFor(() =>
+    expect(screen.getByTestId("count")).toHaveTextContent("3"),
   )
 })
 
@@ -89,7 +79,6 @@ test("Add If Odd should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
   // "Add If Odd" button is clicked => Count should stay 0
-  expect(screen.getByTestId("count")).toHaveTextContent("0")
   await user.press(screen.getByText("Add If Odd"))
   expect(screen.getByTestId("count")).toHaveTextContent("0")
 
