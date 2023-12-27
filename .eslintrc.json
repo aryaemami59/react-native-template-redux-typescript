@@ -1,12 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "@react-native",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-    "plugin:react/jsx-runtime"
-  ],
+  "extends": ["plugin:react/jsx-runtime"],
   "ignorePatterns": ["node_modules", ".vscode", "dist", "metro.config.js"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
