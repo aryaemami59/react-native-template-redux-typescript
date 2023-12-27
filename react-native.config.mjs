@@ -5,6 +5,6 @@ const config = {
       automaticPodsInstallation: true,
     },
   },
-};
+}
 
-export default config;
+export default config

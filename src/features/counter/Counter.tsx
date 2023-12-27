@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useState } from "react"
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { AsyncButton } from '../../components/AsyncButton'
+} from "react-native"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { AsyncButton } from "../../components/AsyncButton"
 import {
   decrement,
   increment,
@@ -16,57 +16,70 @@ import {
   incrementIfOdd,
   selectCount,
   selectStatus,
-} from './counterSlice'
+} from "./counterSlice"
 
 export const Counter = () => {
-  const [incrementAmount, setIncrementAmount] = useState(2)
+  const dispatch = useAppDispatch()
   const count = useAppSelector(selectCount)
   const status = useAppSelector(selectStatus)
-  const dispatch = useAppDispatch()
+  const [incrementAmount, setIncrementAmount] = useState("2")
+
+  const incrementValue = Number(incrementAmount) || 0
 
   return (
     <View>
       <View style={styles.row}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => dispatch(increment())}>
+          aria-label="Increment value"
+          onPress={() => dispatch(increment())}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
-        <Text style={styles.value}>{count}</Text>
+        <Text testID="count" style={styles.value}>
+          {count}
+        </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => dispatch(decrement())}>
+          aria-label="Decrement value"
+          onPress={() => dispatch(decrement())}
+        >
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
         <TextInput
+          aria-label="Set increment amount"
           style={styles.textbox}
           value={`${incrementAmount}`}
           keyboardType="numeric"
           onChangeText={text => {
-            setIncrementAmount(Number(text))
+            setIncrementAmount(text)
           }}
         />
         <View>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => dispatch(incrementByAmount(incrementAmount))}>
+            onPress={() => dispatch(incrementByAmount(incrementValue))}
+          >
             <Text style={styles.buttonText}>Add Amount</Text>
           </TouchableOpacity>
           <AsyncButton
+            aria-label="Async Button"
             style={styles.button}
-            disabled={status !== 'idle'}
+            disabled={status !== "idle"}
             onPress={() => {
-              dispatch(incrementAsync(incrementAmount))
-            }}>
+              dispatch(incrementAsync(incrementValue))
+            }}
+          >
             <Text style={styles.buttonText}>Add Async</Text>
           </AsyncButton>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              dispatch(incrementIfOdd(incrementAmount))
-            }}>
+              dispatch(incrementIfOdd(incrementValue))
+            }}
+          >
             <Text style={styles.buttonText}>Add If Odd</Text>
           </TouchableOpacity>
         </View>
@@ -77,10 +90,10 @@ export const Counter = () => {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
   },
   value: {
     fontSize: 78,
@@ -88,7 +101,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   button: {
-    backgroundColor: 'rgba(112, 76, 182, 0.1)',
+    backgroundColor: "rgba(112, 76, 182, 0.1)",
     borderRadius: 2,
     paddingLeft: 12,
     paddingRight: 12,
@@ -96,17 +109,17 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   buttonText: {
-    color: 'rgb(112, 76, 182)',
+    color: "rgb(112, 76, 182)",
     fontSize: 32,
-    textAlign: 'center',
+    textAlign: "center",
   },
   textbox: {
     fontSize: 48,
     padding: 2,
     width: 64,
-    textAlign: 'center',
+    textAlign: "center",
     marginRight: 8,
     borderWidth: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
 })

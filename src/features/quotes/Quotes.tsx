@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 import {
   Modal,
   ScrollView,
@@ -6,8 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native'
-import { useGetQuotesQuery } from './quotesApiSlice'
+} from "react-native"
+import { useGetQuotesQuery } from "./quotesApiSlice"
 
 const options = [5, 10, 20, 30]
 
@@ -36,7 +36,8 @@ export const Quotes = () => {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
-          style={styles.button}>
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>
             Select the Quantity of Quotes to Fetch: {numberOfQuotes}
           </Text>
@@ -46,14 +47,16 @@ export const Quotes = () => {
           animationType="slide"
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}>
+          onRequestClose={() => setModalVisible(false)}
+        >
           <View style={styles.modalView}>
             <ScrollView style={styles.quotesList}>
               {options.map(option => (
                 <TouchableOpacity
                   key={option}
                   style={styles.option}
-                  onPress={() => pickNumberOfQuotes(option)}>
+                  onPress={() => pickNumberOfQuotes(option)}
+                >
                   <Text style={styles.optionText}>{option}</Text>
                 </TouchableOpacity>
               ))}
@@ -81,53 +84,53 @@ export const Quotes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
   },
   button: {
     padding: 10,
-    backgroundColor: 'rgba(112, 76, 182, 0.1)',
+    backgroundColor: "rgba(112, 76, 182, 0.1)",
     borderRadius: 5,
   },
   buttonText: {
-    color: 'rgb(112, 76, 182)',
+    color: "rgb(112, 76, 182)",
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 5,
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 5,
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
     elevation: 5,
   },
   option: {
     fontSize: 30,
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#CCC',
+    borderBottomColor: "#CCC",
   },
   optionText: {
     fontSize: 20,
   },
   quotesList: {
-    width: 'auto',
+    width: "auto",
   },
   quoteContainer: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     padding: 10,
     borderRadius: 5,
     marginVertical: 5,
   },
   quoteText: {
-    fontStyle: 'italic',
+    fontStyle: "italic",
   },
   author: {
-    fontWeight: 'bold',
-    textAlign: 'right',
+    fontWeight: "bold",
+    textAlign: "right",
     marginTop: 5,
   },
 })

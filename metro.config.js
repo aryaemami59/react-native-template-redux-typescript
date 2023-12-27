@@ -1,5 +1,5 @@
 /** @type {Pick<import('metro-config'), 'mergeConfig'> & { getDefaultConfig: import('metro-config').getDefaultConfig }} */
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config')
+const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config")
 
 /**
  * Metro configuration

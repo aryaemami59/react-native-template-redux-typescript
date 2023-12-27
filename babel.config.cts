@@ -1,7 +1,7 @@
-import type { TransformOptions } from '@babel/core';
+import type { TransformOptions } from "@babel/core"
 
 const config: TransformOptions = {
-  presets: ['module:@react-native/babel-preset'],
-};
+  presets: ["module:@react-native/babel-preset"],
+}
 
-export default config;
+export default config
