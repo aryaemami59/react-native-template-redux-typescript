@@ -31,20 +31,20 @@ export const Counter = () => {
       <View style={styles.row}>
         <TouchableOpacity
           style={styles.button}
-          aria-label="Increment value"
-          onPress={() => dispatch(increment())}
+          aria-label="Decrement value"
+          onPress={() => dispatch(decrement())}
         >
-          <Text style={styles.buttonText}>+</Text>
+          <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
         <Text testID="count" style={styles.value}>
           {count}
         </Text>
         <TouchableOpacity
           style={styles.button}
-          aria-label="Decrement value"
-          onPress={() => dispatch(decrement())}
+          aria-label="Increment value"
+          onPress={() => dispatch(increment())}
         >
-          <Text style={styles.buttonText}>-</Text>
+          <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
