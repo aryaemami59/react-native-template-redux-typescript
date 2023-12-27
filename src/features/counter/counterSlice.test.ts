@@ -1,10 +1,10 @@
-import type { CounterSliceState } from '../src/features/counter/counterSlice'
+import type { CounterSliceState } from './counterSlice'
 import {
   counterSlice,
   decrement,
   increment,
   incrementByAmount,
-} from '../src/features/counter/counterSlice'
+} from './counterSlice'
 
 describe('counter reducer', () => {
   const { reducer: counterReducer } = counterSlice
