@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { AsyncButton } from '../../components/AsyncButton';
+} from 'react-native'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { AsyncButton } from '../../components/AsyncButton'
 import {
   decrement,
   increment,
@@ -16,13 +16,13 @@ import {
   incrementIfOdd,
   selectCount,
   selectStatus,
-} from './counterSlice';
+} from './counterSlice'
 
 export const Counter = () => {
-  const [incrementAmount, setIncrementAmount] = useState(2);
-  const count = useAppSelector(selectCount);
-  const status = useAppSelector(selectStatus);
-  const dispatch = useAppDispatch();
+  const [incrementAmount, setIncrementAmount] = useState(2)
+  const count = useAppSelector(selectCount)
+  const status = useAppSelector(selectStatus)
+  const dispatch = useAppDispatch()
 
   return (
     <View>
@@ -45,7 +45,7 @@ export const Counter = () => {
           value={`${incrementAmount}`}
           keyboardType="numeric"
           onChangeText={text => {
-            setIncrementAmount(Number(text));
+            setIncrementAmount(Number(text))
           }}
         />
         <View>
@@ -58,22 +58,22 @@ export const Counter = () => {
             style={styles.button}
             disabled={status !== 'idle'}
             onPress={() => {
-              dispatch(incrementAsync(incrementAmount)).catch(console.log);
+              dispatch(incrementAsync(incrementAmount))
             }}>
             <Text style={styles.buttonText}>Add Async</Text>
           </AsyncButton>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              dispatch(incrementIfOdd(incrementAmount));
+              dispatch(incrementIfOdd(incrementAmount))
             }}>
             <Text style={styles.buttonText}>Add If Odd</Text>
           </TouchableOpacity>
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   row: {
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
   },
-});
+})

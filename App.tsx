@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -7,28 +7,29 @@ import {
   Text,
   View,
   useColorScheme,
-} from 'react-native';
-import { Provider } from 'react-redux';
-import { store } from './src/app/store';
-import { Counter } from './src/features/counter/Counter';
+} from 'react-native'
+import { Provider } from 'react-redux'
+import { store } from './src/app/store'
+import { Counter } from './src/features/counter/Counter'
 
 import {
   DebugInstructions,
   HermesBadge,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { Header } from './src/components/Header';
-import { LearnReduxLinks } from './src/components/LearnReduxLinks';
-import { Section } from './src/components/Section';
-import { TypedColors } from './src/constants/TypedColors';
+} from 'react-native/Libraries/NewAppScreen'
+import { Header } from './src/components/Header'
+import { LearnReduxLinks } from './src/components/LearnReduxLinks'
+import { Section } from './src/components/Section'
+import { TypedColors } from './src/constants/TypedColors'
+import { Quotes } from './src/features/quotes/Quotes'
 
 export const App: FC = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? TypedColors.darker : TypedColors.lighter,
-  };
+  }
 
   return (
     <Provider store={store}>
@@ -49,6 +50,7 @@ export const App: FC = () => {
                 : TypedColors.white,
             }}>
             <Counter />
+            <Quotes />
             <Section title="Step One">
               Edit <Text style={styles.highlight}>App.tsx</Text> to change this
               screen and then come back to see your edits.
@@ -71,11 +73,11 @@ export const App: FC = () => {
         </ScrollView>
       </SafeAreaView>
     </Provider>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-});
+})

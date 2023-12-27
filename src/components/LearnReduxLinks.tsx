@@ -1,19 +1,19 @@
-import type { FC } from 'react';
-import React from 'react';
+import type { FC } from 'react'
+import React from 'react'
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   useColorScheme,
-} from 'react-native';
-import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrowser';
-import { TypedColors } from '../constants/TypedColors';
+} from 'react-native'
+import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrowser'
+import { TypedColors } from '../constants/TypedColors'
 
 interface Link {
-  title: string;
-  link: string;
-  description: string;
+  title: string
+  link: string
+  description: string
 }
 
 const links: Link[] = [
@@ -38,10 +38,10 @@ const links: Link[] = [
     link: 'https://react-redux.js.org',
     description: 'Official React bindings for Redux',
   },
-];
+]
 
 export const LearnReduxLinks: FC = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark'
 
   return (
     <View style={styles.container}>
@@ -61,7 +61,7 @@ export const LearnReduxLinks: FC = () => {
             <TouchableOpacity
               accessibilityRole={'button'}
               onPress={() => {
-                openURLInBrowser(item.link);
+                openURLInBrowser(item.link)
               }}
               style={styles.linkContainer}>
               <Text style={styles.link}>{item.title}</Text>
@@ -74,11 +74,11 @@ export const LearnReduxLinks: FC = () => {
               </Text>
             </TouchableOpacity>
           </React.Fragment>
-        );
+        )
       })}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
   },
-});
+})
