@@ -1,4 +1,4 @@
-import React from "react"
+import { Fragment } from "react"
 import {
   StyleSheet,
   Text,
@@ -46,7 +46,7 @@ export const LearnReduxLinks = () => {
     <View style={styles.container}>
       {links.map((item, index) => {
         return (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <View
               style={[
                 styles.separator,
@@ -74,7 +74,7 @@ export const LearnReduxLinks = () => {
                 {item.description}
               </Text>
             </TouchableOpacity>
-          </React.Fragment>
+          </Fragment>
         )
       })}
     </View>
