@@ -60,9 +60,7 @@ export const Counter = () => {
           style={[styles.textbox, textStyle]}
           value={`${incrementAmount}`}
           keyboardType="numeric"
-          onChangeText={text => {
-            setIncrementAmount(text)
-          }}
+          onChangeText={setIncrementAmount}
         />
         <View>
           <TouchableOpacity
