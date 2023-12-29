@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import React from "react"
 import {
   StyleSheet,
@@ -40,7 +39,7 @@ const links: Link[] = [
   },
 ]
 
-export const LearnReduxLinks: FC = () => {
+export const LearnReduxLinks = () => {
   const isDarkMode = useColorScheme() === "dark"
 
   return (
